@@ -74,6 +74,7 @@ function addBookToLibrary() {
     }
 
     createCard(myLibrary[myLibrary.length-1]);
+    
 }
 
 //execute addBookToLibrary function with a button click
