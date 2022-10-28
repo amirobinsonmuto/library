@@ -2,7 +2,6 @@
 let myLibrary = [];
 let submitBtn = document.getElementById('submit');
 let form = document.getElementById('form');
-let deleteBtns;
 let cardSection = document.getElementById('card_section');
 
 //add a book btn
@@ -38,8 +37,7 @@ function addBookToLibrary() {
 
     //add a new object to myLibrary array
     myLibrary.push(newBook);
-
-    console.log(myLibrary);//delete later
+    
 }
 
 //function to create a card 
@@ -80,24 +78,20 @@ function createCard (el) {
 //function to remove all DOM elements under .card_section
 //instruction from https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
 function removeCards () {
-while (cardSection.firstChild) {
-  cardSection.removeChild(cardSection.firstChild);
+    while (cardSection.firstChild) {
+    cardSection.removeChild(cardSection.firstChild);
 }}
 
 //function to display all elements(book objects) in the myLibrary array 
 function displayAllCards () {
     myLibrary.forEach(el => createCard(el));
+    deleteBtns();
+    readBtns();
 }
 
-//eventlistner click for the submit button to invoke three functions above
-submitBtn.addEventListener('click', () => {
-
-    addBookToLibrary();
-    removeCards();
-    displayAllCards();
-
-    //get deleteBtns and add eventlistner
-    deleteBtns = document.querySelectorAll('.deleteBtn');
+//deleteBtn function
+function deleteBtns () {
+    let deleteBtns = document.querySelectorAll('.deleteBtn');
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.addEventListener('click', (e) => {
             let index = e.target.parentElement.getAttribute('data-attribute');
@@ -106,9 +100,11 @@ submitBtn.addEventListener('click', () => {
             displayAllCards();
         })
     })
+}
 
-    //get readBtns and add eventlistner
-    readBtns = document.querySelectorAll('.readBtn');
+//readBtn 
+function readBtns () {
+    let readBtns = document.querySelectorAll('.readBtn');
     readBtns.forEach((readBtn) => {
         readBtn.addEventListener('click', (e) => {
             let index = e.target.parentElement.getAttribute('data-attribute');
@@ -117,6 +113,14 @@ submitBtn.addEventListener('click', () => {
             displayAllCards();
         })
     })
+}
+
+//eventlistner click for the submit button to invoke three functions above
+submitBtn.addEventListener('click', () => {
+
+    addBookToLibrary();
+    removeCards();
+    displayAllCards();
 
 })
 
