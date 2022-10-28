@@ -19,6 +19,11 @@ function Book(author, title, pages, read) {
     this.read = read; 
 }
 
+//add a toggle function to Book prototype
+Book.prototype.toggleRead = function () {
+    return this.read = !this.read;
+}
+
 //function to create an object, and adds it to the myLibrary array
 function addBookToLibrary() {
 
@@ -31,12 +36,10 @@ function addBookToLibrary() {
     //create a newBook object using a constructor
     const newBook = new Book(form_author, form_title, form_pages, form_read);
 
-    console.log(newBook);//delete later
-
-    console.log(myLibrary);//delete later
-
     //add a new object to myLibrary array
     myLibrary.push(newBook);
+
+    console.log(myLibrary);//delete later
 }
 
 //function to create a card 
@@ -52,9 +55,14 @@ function createCard (el) {
     p_title.textContent = el.title;
     p_pages.textContent = el.pages;
     p_read.textContent = el.read;
+    //deleteBtn
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteBtn');
     deleteBtn.textContent = 'Delete';
+    //readBtn
+    const readBtn = document.createElement('button');
+    readBtn.classList.add('readBtn');
+    readBtn.textContent = el.read;
 
     //append nodes to the elements
     div_card.appendChild(p_author);
@@ -62,26 +70,11 @@ function createCard (el) {
     div_card.appendChild(p_pages);
     div_card.appendChild(p_read);
     div_card.appendChild(deleteBtn);
+    div_card.appendChild(readBtn);
     cardSection.appendChild(div_card);
 
     //set data-attribute with myLibrary index number
     div_card.setAttribute('data-attribute', myLibrary.indexOf(el));
-
-    //select delete buttons
-    deleteBtns = document.querySelectorAll('.deleteBtn');
-
-    //delete btn function
-    deleteBtns.forEach((deleteBtn) => {
-        deleteBtn.addEventListener('click', (e) => {
-            let index = e.target.parentElement.getAttribute('data-attribute');
-            console.log(index);
-            // myLibrary.splice(index, 1);
-            // console.log(myLibrary);
-            // removeCards();
-            // displayAllCards();
-        })
-    })
-
 }
 
 //function to remove all DOM elements under .card_section
@@ -98,10 +91,35 @@ function displayAllCards () {
 
 //eventlistner click for the submit button to invoke three functions above
 submitBtn.addEventListener('click', () => {
+
     addBookToLibrary();
     removeCards();
     displayAllCards();
+
+    //get deleteBtns and add eventlistner
+    deleteBtns = document.querySelectorAll('.deleteBtn');
+    deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', (e) => {
+            let index = e.target.parentElement.getAttribute('data-attribute');
+            myLibrary.splice(index, 1);
+            removeCards();
+            displayAllCards();
+        })
+    })
+
+    //get readBtns and add eventlistner
+    readBtns = document.querySelectorAll('.readBtn');
+    readBtns.forEach((readBtn) => {
+        readBtn.addEventListener('click', (e) => {
+            let index = e.target.parentElement.getAttribute('data-attribute');
+            myLibrary[index].toggleRead();
+            removeCards();
+            displayAllCards();
+        })
+    })
+
 })
+
 
 
 
