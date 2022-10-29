@@ -3,7 +3,10 @@
 
 /*custom properties*/
 :root {
-	--main-color: #0075c8;
+	--main-color-blue: #0075c8;
+	--grayishBlue: hsl(229, 6%, 66%);
+    --veryLightGray: hsl(0, 0%, 98%);
+
   }
 
 /*font*/
@@ -22,7 +25,7 @@ body {
 }
 
 .lower_header {
-	background-color: var(--main-color);
+	background-color: var(--main-color-blue);
 }
 
 .lower_header .container {
@@ -73,6 +76,16 @@ h1 {
 }
 
 /* main */
+
 .card {
-    border: solid 2px red;
+	border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    padding: 1rem;
+	border-top: 3px solid var(--main-color-blue);
+}
+
+#card_section {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(4, 1fr);
 }

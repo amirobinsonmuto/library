@@ -56,11 +56,11 @@ function createCard (el) {
     p_read.textContent = el.read;
     //deleteBtn
     const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.classList.add('deleteBtn', 'btn', 'btn-outline-danger');
     deleteBtn.textContent = 'Delete';
     //readBtn
     const readBtn = document.createElement('button');
-    readBtn.classList.add('readBtn');
+    readBtn.classList.add('readBtn','btn','btn-outline-success','mb-2');
     readBtn.textContent = el.read;
 
     //append nodes to the elements
@@ -68,8 +68,8 @@ function createCard (el) {
     div_card.appendChild(p_title);
     div_card.appendChild(p_pages);
     div_card.appendChild(p_read);
-    div_card.appendChild(deleteBtn);
     div_card.appendChild(readBtn);
+    div_card.appendChild(deleteBtn);
     cardSection.appendChild(div_card);
 
     //set data-attribute with myLibrary index number
