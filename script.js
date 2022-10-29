@@ -50,18 +50,24 @@ function createCard (el) {
     const p_title = document.createElement('p');
     const p_pages = document.createElement('p');
     const p_read = document.createElement('p');
-    p_author.textContent = el.author;
-    p_title.textContent = el.title;
-    p_pages.textContent = el.pages;
-    p_read.textContent = el.read;
-    //deleteBtn
-    const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('deleteBtn', 'btn', 'btn-outline-danger');
-    deleteBtn.textContent = 'Delete';
+    p_author.textContent = "Author: " + el.author;
+    p_title.textContent = "Title: " + el.title;
+    p_pages.textContent = "Number of pages: " + el.pages;
+   
     //readBtn
     const readBtn = document.createElement('button');
-    readBtn.classList.add('readBtn','btn','btn-outline-success','mb-2');
-    readBtn.textContent = el.read;
+    if (el.read == true) {
+        readBtn.classList.add('readBtn','btn','btn-success','mb-2');
+        readBtn.textContent = "Read";
+    } else {
+        readBtn.classList.add('readBtn','btn','btn-secondary','mb-2');
+        readBtn.textContent = "Not Read";
+    }
+    
+     //deleteBtn
+     const deleteBtn = document.createElement('button');
+     deleteBtn.classList.add('deleteBtn', 'btn', 'btn-outline-danger');
+     deleteBtn.textContent = 'Delete';
 
     //append nodes to the elements
     div_card.appendChild(p_author);
