@@ -76,11 +76,3 @@ h1 {
 .card {
     border: solid 2px red;
 }
-
-#form {
-    display: none;
-}
-
-.display {
-    display: block !important;
-}
