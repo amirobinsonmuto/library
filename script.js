@@ -42,6 +42,7 @@ function addBookToLibrary() {
 
 //function to create a card 
 function createCard (el) {
+
     //create DOM elements and text content
     const div_card = document.createElement('div');
     div_card.classList.add('card');
@@ -82,12 +83,6 @@ function removeCards () {
     cardSection.removeChild(cardSection.firstChild);
 }}
 
-//function to display all elements(book objects) in the myLibrary array 
-function displayAllCards () {
-    myLibrary.forEach(el => createCard(el));
-    deleteBtns();
-    readBtns();
-}
 
 //deleteBtn function
 function deleteBtns () {
@@ -102,7 +97,7 @@ function deleteBtns () {
     })
 }
 
-//readBtn 
+//readBtn function
 function readBtns () {
     let readBtns = document.querySelectorAll('.readBtn');
     readBtns.forEach((readBtn) => {
@@ -115,9 +110,16 @@ function readBtns () {
     })
 }
 
+//function to display all elements(book objects) in the myLibrary array 
+function displayAllCards () {
+    myLibrary.forEach(el => createCard(el));
+    deleteBtns();
+    readBtns();
+}
+
 //eventlistner click for the submit button to invoke three functions above
 submitBtn.addEventListener('click', () => {
-
+    
     addBookToLibrary();
     removeCards();
     displayAllCards();
