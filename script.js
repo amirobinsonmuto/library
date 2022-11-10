@@ -10,18 +10,32 @@ addBookBtn.addEventListener('click', () => {
     form.classList.add('display');
 });
 
-//object constructor
-function Book(author, title, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read; 
+// //object constructor
+// function Book(author, title, pages, read) {
+//     this.author = author;
+//     this.title = title;
+//     this.pages = pages;
+//     this.read = read; 
+// }
+
+//rewrite the object constructor to class
+class Book {
+    constructor(author, title, pages, read) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read; 
+    }
+
+    toggleRead() {
+        return this.read = !this.read;
+    }
 }
 
-//add a toggle function to Book prototype
-Book.prototype.toggleRead = function () {
-    return this.read = !this.read;
-}
+// //add a toggle function to Book prototype
+// Book.prototype.toggleRead = function () {
+//     return this.read = !this.read;
+// }
 
 //function to create an object, and adds it to the myLibrary array
 function addBookToLibrary() {
