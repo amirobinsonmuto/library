@@ -89,3 +89,15 @@ h1 {
 	gap: 20px;
 	grid-template-columns: repeat(4, 1fr);
 }
+
+#error-message {
+	color: red;
+}
+
+.hidden {
+	display: none;
+}
+
+.disable-click {
+    pointer-events: none;
+}
